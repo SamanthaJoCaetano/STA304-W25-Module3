@@ -6,9 +6,7 @@ output:
   pdf_document: default
 ---
 
-# Simulation
-
-## Recap
+# Simulation Recap
 
 Discussion of: sample(), rnorm(), runif(), etc. 
 
@@ -26,29 +24,3 @@ rnorm(n=10, mean=165, sd=5)
 runif(n=10, min=160, max=180)
 
 ```
-
-
-
-## Exercise: Creating a Tibble
-
-Let's build a dataset/tibble that is about my experiences waiting for the bus. It will include how early/late the bus was (waiting_time), the colour of my shirt the day I was waiting  and the number of people also waiting at the bus stop.
-
-```{r}
-set.seed(2023)
-
-waiting_times <- runif(n=10, min=-1, max=4)
-
-shirt_colour <- sample(x=colour, size=10, replace=TRUE, prob=c(0.6, 0.1, 0.1, 0.1, 0.1))
-
-num_peeps_bus <- rpois(n=10, lambda = 3)
-
-my_bus_data <- tibble(waiting_times, shirt_colour, num_peeps_bus)
-
-glimpse(my_bus_data)
-```
-
-
-
-
-
-
