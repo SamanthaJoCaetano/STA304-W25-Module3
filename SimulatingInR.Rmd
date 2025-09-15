@@ -1,6 +1,6 @@
 ---
 title: "Simulation Example"
-date: "Jan 21, 2025"
+date: "Sept 16, 2025"
 author: "Samantha-Jo Caetano"
 output:
   pdf_document: default
@@ -22,5 +22,36 @@ rbinom(n=4, size=1, prob=0.5)
 ## Simulating "heights"
 rnorm(n=10, mean=165, sd=5)
 runif(n=10, min=160, max=180)
-
 ```
+
+
+# Confidence Interval Example 
+
+Let's simulate year of study and heights of students and make a 95% confidence interval for the mean height of third year students.
+
+```{r}
+set.seed(1989)
+
+year_of_study <- sample(x=c("1", "2", "3", "4"), size=400, replace=TRUE) 
+heights <- rnorm(n=400, mean=165, sd=10)
+
+mydata <- tibble(year_of_study, heights)
+```
+
+The CI for a mean is: $$\bar{x} \pm Z_{\alpha/2} \frac{s}{\sqrt{n}}$$ 
+
+So we need to find the sample mean ($\bar{x}$), the sample standard deviation ($s$) and the sample size ($n$) of the heights of third year students in the sample. And we need to calculate the quantile $Z_{0.025}$.
+
+```{r}
+mydata %>% filter(year_of_study=="3") %>% 
+  summarize(n=n(),
+            xbar=mean(heights),
+            s=sd(heights))
+
+Zquantile = qnorm(0.975)
+```
+
+Thus the CI is $164.9924 \pm 1.96 \times \frac{9.647588}{\sqrt{97}}$. So the 95% CI of heights of third year students in the sample is 163cm to 167cm.
+
+
+
