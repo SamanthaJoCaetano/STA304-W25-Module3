@@ -14,7 +14,7 @@ Discussion of: sample(), rnorm(), runif(), etc.
 library(tidyverse)
 
 set.seed(2001)
-
+ 
 ## Simulating "coin flips"
 sample(x=c("H", "T"), size=4, replace=TRUE)
 rbinom(n=4, size=1, prob=0.5)
